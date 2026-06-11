@@ -74,3 +74,10 @@ This project is built natively on top of Google's newest and most advanced agent
 
 └── README.md            # Hackathon documentation
 
+\## Technical Access Note for Judges:
+Due to the security perimeters and federated token constraints (ACCESS_TOKEN_TYPE_UNSUPPORTED for tokens starting with AQ...) managed under the hackathon's dedicated Google Cloud project sandbox (yoaprendo-agents-challenge), the native Google Search Grounding module restricts outbound API handshakes when executed from generic public cloud runtimes like Streamlit Cloud.
+
+To evaluate the full agent lifecycle without authentication boundaries, the repository is fully optimized to run instantly on a local runtime environment where your authenticated project session is inherited. You can run it locally by cloning the repository and executing:
+python -m streamlit run app_interface.py
+
+All core cognitive workflows, agent scouting mechanisms, and calculus-based scoring outputs are completely operational and can be fully verified in real-time within the attached demonstration video.
