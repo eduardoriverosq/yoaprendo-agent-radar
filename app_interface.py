@@ -41,9 +41,14 @@ load_dotenv()
 
 @st.cache_resource
 def obtener_cliente():
-    # El SDK moderno de Google detecta automáticamente la variable 'GEMINI_API_KEY'
+    # 1. Buscamos primero si existe la clave en los Secrets de Streamlit Cloud (Nube)
+    if "GEMINI_API_KEY" in st.secrets:
+        key = st.secrets["GEMINI_API_KEY"]
+    # 2. Si no existe, la busca en el entorno local de tu PC (Windows)
+    else:
+        key = os.environ.get("GEMINI_API_KEY")# El SDK moderno de Google detecta automáticamente la variable 'GEMINI_API_KEY'
     # que configuraste en tu archivo .env de forma invisible.
-    return genai.Client()
+    return genai.Client(api_key=key)
 
 try:
     client = obtener_cliente()
